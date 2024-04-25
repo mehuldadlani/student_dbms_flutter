@@ -1,6 +1,7 @@
 # Miscellaneous
 *.class
 *.log
+*.nv
 *.pyc
 *.swp
 .DS_Store
