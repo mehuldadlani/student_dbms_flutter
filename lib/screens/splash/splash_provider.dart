@@ -18,7 +18,4 @@ class SplashProvider extends ChangeNotifier {
     }
   }
 
-  bool checkStudent() {
-    return true;
-  }
 }

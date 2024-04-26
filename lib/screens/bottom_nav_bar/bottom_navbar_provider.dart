@@ -9,4 +9,36 @@ class BottomNavbarProvider extends ChangeNotifier {
     _selectedIndex = newIndex;
     notifyListeners();
   }
+
+
+    final List<Widget> _studentScreens = [
+    const StudentDashboardView(),
+    const StudentCourseView(),
+    const StudentExamView(),
+    const StudentProfileView(),
+  ];
+
+    final List<Widget> _teacherScreens = [
+    const TeacherDashboardView(),
+  ];
+
+
+  hapticFeedback() {
+    HapticFeedback.lightImpact();
+    notifyListeners();
+  }
+
+  List<String> listOfStrings = [
+    'Dashboard',
+    'Course',
+    'Exam',
+    'Profile',
+  ];
+
+  List<IconData> listOfIcons = [
+    Icons.home,
+    Icons.search,
+    Icons.notifications,
+    Icons.person,
+  ];
 }

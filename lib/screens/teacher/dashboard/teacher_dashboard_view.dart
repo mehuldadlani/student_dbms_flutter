@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'teacher_dashboard_provider.dart';
 
@@ -14,14 +15,14 @@ class TeacherDashboardView extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('S T U D E N T  D B M S'),
+              title: Text('S T U D E N T  D B M S - Teacher Dashboard'),
             ),
             body: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  viewModel.checkAuthentication();
+                  viewModel.logout();
                 },
-                child: Text('Check Authentication'),
+                child: Text('Logout'),
               ),
             ),
           );

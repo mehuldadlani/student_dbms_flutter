@@ -5,10 +5,12 @@ import 'package:student_dbms/screens/authentication/auth_view.dart';
 import 'package:student_dbms/screens/splash/splash_view.dart';
 import 'package:student_dbms/screens/student/dashboard/student_dashboard_view.dart';
 import 'package:student_dbms/screens/teacher/dashboard/teacher_dashboard_view.dart';
+import 'package:student_dbms/services/local_storage_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LocalStorageService().initStorage();
   await dotenv.load(fileName: ".env");
   await Supabase.initialize(
     url: 'https://dejrdvtubpvdqlozzobx.supabase.co',

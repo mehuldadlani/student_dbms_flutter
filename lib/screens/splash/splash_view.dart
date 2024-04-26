@@ -3,6 +3,7 @@ import 'package:easy_widgets/easy_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_dbms/screens/authentication/auth_view.dart';
+import 'package:student_dbms/screens/bottom_nav_bar/bottom_navbar_view.dart';
 import 'package:student_dbms/screens/teacher/dashboard/teacher_dashboard_view.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -32,10 +33,8 @@ class SplashView extends StatelessWidget {
               ),
             ),
             nextScreen: viewModel.session != null
-                ? (viewModel.checkStudent()
-                    ? StudentDashboardView()
-                    : TeacherDashboardView())
-                : AuthView(),
+                ? BottomNavbarView()
+                : const AuthView(),
             splashTransition: SplashTransition.sizeTransition,
             backgroundColor: Colors.white,
             duration: 1000,
