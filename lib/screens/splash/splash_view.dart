@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_dbms/screens/authentication/auth_view.dart';
 import 'package:student_dbms/screens/bottom_nav_bar/bottom_navbar_view.dart';
-import 'package:student_dbms/screens/teacher/dashboard/teacher_dashboard_view.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../student/dashboard/student_dashboard_view.dart';
-
 part 'splash_provider.dart';
 
 class SplashView extends StatelessWidget {
-  const SplashView({Key? key});
+  const SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +30,7 @@ class SplashView extends StatelessWidget {
               ),
             ),
             nextScreen: viewModel.session != null
-                ? BottomNavbarView()
+                ? const BottomNavbarView()
                 : const AuthView(),
             splashTransition: SplashTransition.sizeTransition,
             backgroundColor: Colors.white,

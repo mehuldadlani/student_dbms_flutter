@@ -15,14 +15,14 @@ class TeacherDashboardView extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('S T U D E N T  D B M S - Teacher Dashboard'),
+              title: const Text('S T U D E N T  D B M S - Teacher Dashboard'),
             ),
             body: Center(
               child: ElevatedButton(
                 onPressed: () {
                   viewModel.logout();
                 },
-                child: Text('Logout'),
+                child: const Text('Logout'),
               ),
             ),
           );

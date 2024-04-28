@@ -1,25 +1,21 @@
 import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:student_dbms/services/local_storage_service.dart';
-
 import '../student/courses/student_course_view.dart';
 import '../student/dashboard/student_dashboard_view.dart';
-import '../student/exam/student_exams.dart';
-import '../student/profile/student_profile.dart';
+import '../student/exam/student_exam_view.dart';
+import '../student/profile/student_profile_view.dart';
 import '../teacher/dashboard/teacher_dashboard_view.dart';
-
 part 'bottom_navbar_provider.dart';
 
 class BottomNavbarView extends StatelessWidget {
-  BottomNavbarView({super.key});
+  const BottomNavbarView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+    // final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
     return ChangeNotifierProvider(

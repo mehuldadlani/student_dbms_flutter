@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'auth_view.dart';
 
 class AuthViewProvider extends ChangeNotifier {
@@ -59,12 +61,12 @@ class AuthViewProvider extends ChangeNotifier {
             emailParts.substring(2, 6).contains(RegExp(r'[0-9]'))) {
           localStorageService.write('userType', 'student');
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => BottomNavbarView()),
+            MaterialPageRoute(builder: (context) => const BottomNavbarView()),
           );
         } else if (userEmail.endsWith('srmist.edu.in')) {
           localStorageService.write('userType', 'teacher');
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => BottomNavbarView()),
+            MaterialPageRoute(builder: (context) => const BottomNavbarView()),
           );
         }
       } else {

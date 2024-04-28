@@ -14,7 +14,7 @@ class SplashProvider extends ChangeNotifier {
 
   Future<void> checkAuthentication() async {
     if (session != null) {
-      MaterialPageRoute(builder: (context) => StudentDashboardView());
+      MaterialPageRoute(builder: (context) => const StudentDashboardView());
     }
   }
 

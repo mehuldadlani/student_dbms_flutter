@@ -1,9 +1,11 @@
 import 'dart:developer';
 
-import 'package:easy_widgets/easy_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_dbms/models/course.dart';
+import 'package:student_dbms/models/faculty.dart';
+import 'package:student_dbms/models/student_course_faculty.dart';
+import 'package:student_dbms/utils/globals.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'student_course_provider.dart';
@@ -25,31 +27,40 @@ class _StudentCourseViewState extends State<StudentCourseView> {
           return Scaffold(
             body: SafeArea(
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 20.hWise,
-                  horizontal: 20.wWise,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 20,
+                  horizontal: 20,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Hello 👋',
+                      'Courses 📔',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
                     ),
-                    10.hGap,
+                    const SizedBox(height: 10),
                     Text(provider.session!.user.email ?? ''),
-                    20.hGap,
+                    const SizedBox(height: 20),
+                    if (provider._isBusy ==
+                        true) // Check if the data is being fetched
+                      const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     Expanded(
                       child: ListView.builder(
                         itemCount: provider.courses.length,
                         itemBuilder: (context, index) {
                           final course = provider.courses[index];
-                          return CourseContainer(course: course);
+                          final faculty = provider.faculties[index];
+                          return CourseContainer(
+                            course: course,
+                            faculty: faculty,
+                          );
                         },
                       ),
                     ),
@@ -66,32 +77,57 @@ class _StudentCourseViewState extends State<StudentCourseView> {
 
 class CourseContainer extends StatelessWidget {
   final CourseModel course;
+  final FacultyModel faculty;
 
-  const CourseContainer({super.key, required this.course});
+  const CourseContainer({
+    super.key,
+    required this.course,
+    required this.faculty,
+  });
 
   @override
   Widget build(BuildContext context) {
     log(course.description);
     return Card(
       elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              course.name,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: InkWell(
+        onTap: () {
+          // Navigate to exam details screen
+        },
+        child: Container(
+          padding: const EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: const Offset(0, 3),
               ),
-            ),
-            const SizedBox(height: 8),
-            Text('Credit: ${course.credit}'),
-            Text('Department: ${course.departmentName}'),
-            Text('Faculty: ${course.faculty}'),
-          ],
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                course.name,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text('Credit: ${course.credit}'),
+              Text('Department: ${course.departmentName}'),
+              Text('Faculty: ${faculty.name}'),
+            ],
+          ),
         ),
       ),
     );

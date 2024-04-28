@@ -6,7 +6,7 @@ class StudentDashboardProvider extends ChangeNotifier {
   final session = Supabase.instance.client.auth.currentSession;
   bool get isLoggedIn => _isLoggedIn;
 
-  int _current = 0;
+  final int _current = 0;
   final CarouselController _controller = CarouselController();
 
   int get current => _current;
@@ -14,7 +14,7 @@ class StudentDashboardProvider extends ChangeNotifier {
   Future<void> checkAuthentication() async {
     await supabase.auth.signOut();
     _isLoggedIn = false;
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     _isLoggedIn = true;
     notifyListeners();
   }
